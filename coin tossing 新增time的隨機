@@ -4,12 +4,14 @@
 #include "stdafx.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 
 int flip();
 
 int main(void)
 {
+	srand(time(NULL));
 	flip();
 }
 
@@ -31,4 +33,3 @@ int flip(void)
 	printf( "Tails: %d\n",  100 - times[0]);
 	return 0 ;
 }
-
