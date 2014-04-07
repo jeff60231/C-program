@@ -1,5 +1,7 @@
-// ConsoleApplication1.cpp : 定義主控台應用程式的進入點。
+// 20140707.cpp : 定義主控台應用程式的進入點。
 //
+
+
 
 #include "stdafx.h"
 #include "stdlib.h"
@@ -19,7 +21,7 @@ void mode(unsigned int freq[], const unsigned int answer[]);
 // function main begins program execution
 int main(void)
 {
-	unsigned int frequency[12] = { 0 }; // initialize array frequency
+	unsigned int frequency[13] = { 0 }; // initialize array frequency
 
 	int i, numA, numB, numC;
 
@@ -45,6 +47,10 @@ int main(void)
 	// process responses
 
 	mode(frequency, response);
+	
+		printf("\n"); 
+		printf("                                                          * = 1000");
+		printf("  \n");
 } // end main
 
 // calculate average of all response values
@@ -61,7 +67,7 @@ void mode(unsigned int freq[], const unsigned int answer[])
 		"********", "  Mode", "********");
 
 	// initialize frequencies to 0
-	for (rating = 1; rating <= 9; ++rating) {
+	for (rating = 0; rating <= 12; ++rating) {
 		freq[rating] = 0;
 	} // end for
 
@@ -76,18 +82,22 @@ void mode(unsigned int freq[], const unsigned int answer[])
 		"1    1    2    2", "5    0    5    0    5");
 
 	// output results
-	for (rating = 1; rating <= 9; ++rating) {
+	for (rating = 2; rating <= 12; ++rating) {
 		printf("%8u%11u          ", rating, freq[rating]);
 
 	                            
 
 		// output histogram bar representing frequency value
-		for (h = 1; h <= freq[rating]; ++h) {
+		for (h = 1; h <= freq[rating] / 1000; ++h) {
 			printf("%s", "*");
+			
 		} // end inner for
-
+		printf("              * = %d", freq[rating]/ 1000);
+		printf(" +  %d", freq[rating] % 1000);
+		
 		puts(""); // being new line of output
 	} // end outer for
+		
 
 	// display the mode value
 	
@@ -110,4 +120,5 @@ void mode(unsigned int freq[], const unsigned int answer[])
 * consequential damages in connection with, or arising out of, the       *
 * furnishing, performance, or use of these programs.                     *
 *************************************************************************/
+
 
