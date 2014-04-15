@@ -18,7 +18,7 @@
 void shuffle(unsigned int wDeck[][FACES]); // shuffling modifies wDeck
 void deal(unsigned int wDeck[][FACES], const char *wFace[],
 	const char *wSuit[], unsigned int wFrequency[]); // dealing doesn't modify the arrays
-void judgeDeckPairs(unsigned int wFrequency[]);
+void judgeDeckPairs(unsigned int wFrequency[], const char *wFace[]);
 void judgeDeckThreeOrFour(unsigned int wFrequency[]);
 void resetFrequency(unsigned int wFrequency[]);
 
@@ -39,23 +39,22 @@ int main(void)
 
 	unsigned int frequency[13] = { 0 };
 
-	unsigned int i;
+
 
 	srand(time(NULL)); // seed random-number generator
 
 	shuffle(deck); // shuffle the deck
 
-	for (i = 1; i <= 5; i++)
-	{
+	
 		
-		printf("The %d hand:\n", i);
+		printf("The  hand of cards:");
 		resetFrequency(frequency);
 		deal(deck, face, suit, frequency); // deal the deck
-		judgeDeckPairs(frequency);
+		judgeDeckPairs(frequency, face);
 		judgeDeckThreeOrFour(frequency);
 		puts("");
-	}
 	
+
 } // end main
 
 // shuffle cards in deck
@@ -104,7 +103,7 @@ void deal(unsigned int wDeck[][FACES], const char *wFace[],
 	} // end for
 } // end function deal
 
-void judgeDeckPairs(unsigned int wFrequency[])
+void judgeDeckPairs(unsigned int wFrequency[], const char *wFace[])
 {
 	size_t times;
 	for (times = 0; times < 13; times++)
@@ -116,7 +115,7 @@ void judgeDeckPairs(unsigned int wFrequency[])
 				puts("The hand contains two pairs.");
 			else if ((wFrequency[times] == 2 && wFrequency[times + 1] != 2 && wFrequency[times + 2] != 2 && wFrequency[times + 3] != 2 && wFrequency[times + 4] != 2) || (wFrequency[times] != 2 && wFrequency[times + 1] == 2 && wFrequency[times + 2] != 2 && wFrequency[times + 3] != 2 && wFrequency[times + 4] != 2) || (wFrequency[times] != 2 && wFrequency[times + 1] != 2 && wFrequency[times + 2] == 2 && wFrequency[times + 3] != 2 && wFrequency[times + 4] != 2) || (wFrequency[times] != 2 && wFrequency[times + 1] != 2 && wFrequency[times + 2] != 2 && wFrequency[times + 3] == 2 && wFrequency[times + 4] != 2) || (wFrequency[times] != 2 && wFrequency[times + 1] != 2 && wFrequency[times + 2] != 2 && wFrequency[times + 3] != 2 && wFrequency[times + 4] == 2))
 			{
-				puts("The hand contains a pair.");
+				printf("The hand contains a pair of %s" , wFace[times]);
 
 			}
 		}
@@ -136,8 +135,8 @@ void judgeDeckThreeOrFour(unsigned int wFrequency[])
 		else if (wFrequency[times] == 4)
 			puts("The hand contains four of a kind.");
 	}
-	
-	
+
+
 }
 
 void resetFrequency(unsigned int wFrequency[])
@@ -146,7 +145,7 @@ void resetFrequency(unsigned int wFrequency[])
 
 	for (i = 0; i < 13; i++)
 	{
-		wFrequency[i] = {0};
+		wFrequency[i] = { 0 };
 	}
 }
 
@@ -165,4 +164,3 @@ void resetFrequency(unsigned int wFrequency[])
 * consequential damages in connection with, or arising out of, the       *
 * furnishing, performance, or use of these programs.                     *
 *************************************************************************/
-
