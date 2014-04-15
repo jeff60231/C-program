@@ -47,7 +47,8 @@ int main(void)
 
 	
 		
-		printf("The  hand of cards:");
+		printf("The  hand of cards:\n");
+		puts("");
 		resetFrequency(frequency);
 		deal(deck, face, suit, frequency); // deal the deck
 		judgeDeckPairs(frequency, face);
@@ -106,21 +107,40 @@ void deal(unsigned int wDeck[][FACES], const char *wFace[],
 void judgeDeckPairs(unsigned int wFrequency[], const char *wFace[])
 {
 	size_t times;
+	size_t column;
+	unsigned int timesRecord = 0;
+	unsigned int temp[2] = { 0 };
+	unsigned int record = 0;
 	for (times = 0; times < 13; times++)
+	{
+		if (wFrequency[times] == 2)
+		{
+			record++; 
+			temp[0] = times;
+			timesRecord = times;
+			break;
+		}
+	
+	}
+	for (times = timesRecord + 1; times < 13; times++)
 	{
 
 		if (wFrequency[times] == 2)
 		{
-			if ((wFrequency[times] == 2 && wFrequency[times + 1] == 2) || (wFrequency[times] == 2 && wFrequency[times + 2] == 2) || (wFrequency[times] == 2 && wFrequency[times + 3] == 2) || (wFrequency[times] == 2 && wFrequency[times + 4] == 2) || (wFrequency[times + 1] == 2 && wFrequency[times + 2] == 2) || (wFrequency[times + 1] == 2 && wFrequency[times + 3] == 2) || (wFrequency[times + 1] == 2 && wFrequency[times + 4] == 2) || (wFrequency[times + 2] == 2 && wFrequency[times + 3] == 2) || (wFrequency[times + 2] == 2 && wFrequency[times + 4] == 2) || (wFrequency[times + 3] == 2 && wFrequency[times + 4] == 2))
-				puts("The hand contains two pairs.");
-			else if ((wFrequency[times] == 2 && wFrequency[times + 1] != 2 && wFrequency[times + 2] != 2 && wFrequency[times + 3] != 2 && wFrequency[times + 4] != 2) || (wFrequency[times] != 2 && wFrequency[times + 1] == 2 && wFrequency[times + 2] != 2 && wFrequency[times + 3] != 2 && wFrequency[times + 4] != 2) || (wFrequency[times] != 2 && wFrequency[times + 1] != 2 && wFrequency[times + 2] == 2 && wFrequency[times + 3] != 2 && wFrequency[times + 4] != 2) || (wFrequency[times] != 2 && wFrequency[times + 1] != 2 && wFrequency[times + 2] != 2 && wFrequency[times + 3] == 2 && wFrequency[times + 4] != 2) || (wFrequency[times] != 2 && wFrequency[times + 1] != 2 && wFrequency[times + 2] != 2 && wFrequency[times + 3] != 2 && wFrequency[times + 4] == 2))
-			{
-				printf("The hand contains a pair of %s" , wFace[times]);
-
-			}
+			record++;
+			temp[1] = times;
+			timesRecord = times;
+			break;
 		}
 
-
+	}
+	if (record == 1)
+	{
+		printf("The hand contains a pair of %s", wFace[temp[0]]);
+	}
+	else if (record == 2)
+	{
+		printf("The hand contains two pairs of %s and %s", wFace[temp[0]], wFace[temp[1]]);
 	}
 
 
