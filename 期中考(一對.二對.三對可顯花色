@@ -19,7 +19,7 @@ void shuffle(unsigned int wDeck[][FACES]); // shuffling modifies wDeck
 void deal(unsigned int wDeck[][FACES], const char *wFace[],
 	const char *wSuit[], unsigned int wFrequency[]); // dealing doesn't modify the arrays
 void judgeDeckPairs(unsigned int wFrequency[], const char *wFace[]);
-void judgeDeckThreeOrFour(unsigned int wFrequency[]);
+void judgeDeckThreeOrFour(unsigned int wFrequency[], const char *wFace[]);
 void resetFrequency(unsigned int wFrequency[]);
 
 int main(void)
@@ -52,7 +52,7 @@ int main(void)
 		resetFrequency(frequency);
 		deal(deck, face, suit, frequency); // deal the deck
 		judgeDeckPairs(frequency, face);
-		judgeDeckThreeOrFour(frequency);
+		judgeDeckThreeOrFour(frequency, face);
 		puts("");
 	
 
@@ -145,15 +145,15 @@ void judgeDeckPairs(unsigned int wFrequency[], const char *wFace[])
 
 
 }
-void judgeDeckThreeOrFour(unsigned int wFrequency[])
+void judgeDeckThreeOrFour(unsigned int wFrequency[],const char *wFace[])
 {
 	size_t times;
 	for (times = 0; times < 13; times++)
 	{
 		if (wFrequency[times] == 3)
-			puts("The hand contains three of a kind.");
+			printf("The hand contains three of %s.", wFace[times]);
 		else if (wFrequency[times] == 4)
-			puts("The hand contains four of a kind.");
+			printf("The hand contains four of %s.", wFace[times]);
 	}
 
 
