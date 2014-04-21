@@ -1,0 +1,61 @@
+// ConsoleApplication1.cpp : 定義主控台應用程式的進入點。
+//
+
+#include "stdafx.h"
+#include "stdlib.h"
+
+int getGCD(int fNum , int sNum );
+
+int main()
+{
+	int c;
+	int i = 0;
+	int fNum;
+	int sNum;
+	char first[20];
+	char second[20];
+
+
+	puts("Please enter the first integer");
+
+	while(i < 19 && (c = getchar() ) != '\n')
+	{
+
+		first[i++] = c;
+
+	}
+	c = 0;
+	puts("Please enter the second integer");
+
+	while(i < 19 && (c = getchar() ) != '\n')
+	{
+
+		second[i++] = c;
+
+	}
+	sscanf_s( first, "%d" ,&fNum );
+	sscanf_s( second, "%d" ,&sNum );
+	printf("The GCD is %d ",getGCD( fNum, sNum ));
+
+}
+int getGCD(int fNum , int sNum )
+{
+	int gcd = 0;
+	if(fNum > sNum)
+	{
+		
+		for( gcd = sNum; (fNum%gcd)!= 0 && (sNum%gcd)!= 0; gcd-- );
+		
+
+
+	}
+	else
+	{
+		
+		for( gcd = fNum; (fNum % gcd)!= 0 && (sNum % gcd)!= 0; gcd-- );
+		
+
+	}
+	return gcd;
+
+}
