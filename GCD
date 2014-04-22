@@ -4,7 +4,7 @@
 #include "stdafx.h"
 #include "stdlib.h"
 
-int getGCD(int fNum , int sNum );
+int getGCD(int fNum, int sNum);
 
 int main()
 {
@@ -18,42 +18,82 @@ int main()
 
 	puts("Please enter the first integer");
 
-	while(i < 19 && (c = getchar() ) != '\n')
+	while (i < 19 && (c = getchar()) != '\n')
 	{
 
 		first[i++] = c;
 
 	}
 	c = 0;
+	i = 0;
 	puts("Please enter the second integer");
 
-	while(i < 19 && (c = getchar() ) != '\n')
+	while (i < 19 && (c = getchar()) != '\n')
 	{
 
 		second[i++] = c;
 
 	}
-	sscanf_s( first, "%d" ,&fNum );
-	sscanf_s( second, "%d" ,&sNum );
-	printf("The GCD is %d ",getGCD( fNum, sNum ));
+	sscanf_s(first, "%d", &fNum);
+	sscanf_s(second, "%d", &sNum);
+	printf("The GCD is %d ", getGCD(fNum, sNum));
 
 }
-int getGCD(int fNum , int sNum )
+int getGCD(int fNum, int sNum)
 {
 	int gcd = 0;
-	if(fNum > sNum)
+	bool isGet = false;
+	if (fNum > sNum)
 	{
-		
-		for( gcd = sNum; (fNum%gcd)!= 0 && (sNum%gcd)!= 0; gcd-- );
-		
+
+		gcd = sNum;
+		while (isGet == false)
+		{
+
+			
+			if (fNum % gcd == 0)
+			{
+
+				if (sNum % gcd == 0)
+				{
+					isGet = true;
+					break;
+					
+
+				}
+
+			}
+			gcd--;
+			
+		}
+
 
 
 	}
 	else
 	{
-		
-		for( gcd = fNum; (fNum % gcd)!= 0 && (sNum % gcd)!= 0; gcd-- );
-		
+
+		gcd = fNum;
+		while (isGet == false)
+		{
+
+
+			
+			if (sNum % gcd == 0)
+			{
+
+				if (fNum % gcd == 0)
+				{
+					isGet = true;
+					break;
+
+				}
+
+			}
+			gcd--;
+			
+		}
+
 
 	}
 	return gcd;
