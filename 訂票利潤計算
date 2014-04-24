@@ -1,0 +1,89 @@
+// ConsoleApplication1.cpp : 定義主控台應用程式的進入點。
+//
+
+#include "stdafx.h"
+#include "stdio.h"
+
+
+int main()
+{
+	int ticketPrice; //the price is nuder 5000
+	int seat; //the number of seat is nuder 250
+	int orderRecord; // the number is under 10
+	int i;
+	puts("Please enter price(under 5000), number of seat(under 250), number of ordered record(under 10) in order  ");
+	scanf_s( "%d%d%d" , &ticketPrice, &seat, &orderRecord);
+	switch (orderRecord){
+	case 1:
+		for (i = 1; i <= 1; i++)
+		{
+			int vari;
+			scanf_s("%d",&vari);
+			break;
+		}
+		
+	case 2:
+		for (i = 1; i <= 2; i++)
+		{
+			int vari;
+			scanf_s("%d", &vari);
+			break;
+		}
+	case 3:
+		for (i = 1; i <= 3; i++)
+		{
+			int vari;
+			scanf_s("%d", &vari);
+			break;
+		}
+	case 4:
+		for (i = 1; i <= 4; i++)
+		{
+			int vari;
+			scanf_s("%d", &vari);
+			break;
+		}
+	case 5:
+		for (i = 1; i <= 5; i++)
+		{
+			int vari;
+			scanf_s("%d", &vari);
+			break;
+		}
+	case 6:
+		for (i = 1; i <= 6; i++)
+		{
+			int vari;
+			scanf_s("%d", &vari);
+			break;
+		}
+	case 7:
+		for (i = 1; i <= 7; i++)
+		{
+			int vari;
+			scanf_s("%d", &vari);
+			break;
+		}
+	case 8:
+		for (i = 1; i <= 8; i++)
+		{
+			int vari;
+			scanf_s("%d", &vari);
+			break;
+		}
+	case 9:
+		for (i = 1; i <= 9; i++)
+		{
+			int vari;
+			scanf_s("%d", &vari);
+			break;
+		}
+	case 10:
+		for (i = 1; i <= 10; i++)
+		{
+			int vari;
+			scanf_s("%d", &vari);
+			break;
+		}
+	}
+}
