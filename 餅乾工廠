@@ -1,0 +1,62 @@
+// cakeFactory.cpp : 定義主控台應用程式的進入點。
+//
+
+#include "stdafx.h"
+
+#include <stdio.h>
+
+
+int main()
+{
+int flour = 0;
+int milk = 0;
+int coco = 0;
+int powder  = 0;
+
+int cookieChoco = 0;
+int cookieMilk = 0;
+int cookieWaffle = 0;
+
+int benefit = 0;
+
+scanf_s("%d%d%d%d", &flour, &milk, &coco, &powder);
+
+if(flour > 0 && milk > 0)
+{
+	for( ; flour > 0 && milk > 0 ; flour-- , milk-- )
+	{
+
+		cookieMilk ++;
+
+	}
+}
+
+if(flour > 0 && coco > 0)
+{
+
+	for( ; flour > 0 && coco > 0 ; flour-- , coco-- )
+	{
+
+		cookieChoco ++;
+
+	}
+
+}
+
+if(milk > 0 && powder > 0)
+{
+
+	for( ; milk > 0 && powder > 0 ; milk-- , powder-- )
+	{
+
+		cookieWaffle ++;
+
+	}
+
+}
+benefit = cookieChoco * 80 + cookieMilk * 100 + cookieWaffle * 60;
+printf("%d %d %d\n", cookieChoco, cookieMilk, cookieWaffle);
+printf("%d" , benefit );
+}
+
+
