@@ -13,7 +13,7 @@ int main(void)
 	int orderRecord = 0; // the number is under 10
 	double  total = 0 ;
 	int temp = 0;
-	double tempSeat = 0 ;
+	int tempSeat = 0 ;
     double cost  = 0 ;
 	double benefit = 0 ;
 	
@@ -30,7 +30,7 @@ int main(void)
 		tempSeat = total - seat * 0.6;
 		benefit = tempSeat * ticketPrice ;
 		
-		tempSeat = total / 5;
+		tempSeat = seat * 0.2;
 		benefit = benefit + tempSeat * ticketPrice * (0.9 + 0.8 + 0.7) ;
 		
 	}
@@ -40,7 +40,7 @@ int main(void)
 		tempSeat = total - seat * 0.4;
 		benefit = tempSeat * ticketPrice * 0.9;
 		
-		tempSeat = total / 5;
+		tempSeat = seat * 0.2;
 		benefit = benefit + tempSeat * ticketPrice * ( 0.8 + 0.7 );
 		
 		
@@ -51,7 +51,7 @@ int main(void)
 		tempSeat = total - seat / 5;
 		benefit = tempSeat * ticketPrice * 0.8;
 		
-		tempSeat = total / 5;
+		tempSeat = seat * 0.2;
 		benefit = benefit + tempSeat * ticketPrice * 0.7 ;
 		
 		
