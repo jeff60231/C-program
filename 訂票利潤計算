@@ -1,29 +1,79 @@
 // ConsoleApplication1.cpp : 定義主控台應用程式的進入點。
 //
 
-#include "stdafx.h"
 
 
 // ConsoleApplication1.cpp : 定義主控台應用程式的進入點。
 //
 
-#include "stdafx.h"
-#include "stdio.h"
+
+#include <stdio.h>
+#include <stdlib.h>
 
 
-int main()
+int main(void)
 {
 	int ticketPrice; //the price is nuder 5000
 	int seat; //the number of seat is nuder 250
 	int orderRecord; // the number is under 10
 	int total = 0;
 	int temp;
+	int tempSeat ;
+	int cost ;
+	int benefit ;
 	int i;
-	puts("Please enter price(under 5000), number of seat(under 250), number of ordered record(under 10) in order  ");
-	scanf_s("%d%d%d", &ticketPrice, &seat, &orderRecord);
 
-	for (; orderRecord => 0 , orderRecord--)
+	scanf("%d%d%d", &ticketPrice, &seat, &orderRecord);
+
+	for (; orderRecord >= 0 ; orderRecord--)
 	{
-		scanf_s("%d", &temp);
+		scanf("%d", &temp);
+		total += temp;
 	}
+	if(total >= seat * 0.6)
+	{
+		tempSeat = total - seat * 0.6;
+		benefit = tempSeat * ticketPrice ;
+		
+		tempSeat = total * 0.2;
+		benefit = benefit + tempSeat * ticketPrice * (0.9 + 0.8 + 0.7) ;
+		
+	}
+	else if( total >= seat * 0.4 )
+	{
+		
+		tempSeat = total - seat * 0.4;
+		benefit = tempSeat * ticketPrice * 0.9;
+		
+		tempSeat = total * 0.2;
+		benefit = benefit + tempSeat * ticketPrice * ( 0.8 + 0.7 );
+		
+		
+	}
+	else if( total >= seat * 0.2 )
+	{
+		
+		tempSeat = total - seat * 0.2;
+		benefit = tempSeat * ticketPrice * 0.8;
+		
+		tempSeat = total * 0.2;
+		benefit = benefit + tempSeat * ticketPrice * 0.7 ;
+		
+		
+	}
+	else if(total < seat * 0.2)
+	{
+		
+		tempSeat = total ;
+		benefit = tempSeat * ticketPrice * 0.7;
+		
+		
+	}
+
+printf( "%d" , benefit);
+
+
+
+system("pause");
+return 0;
 }
