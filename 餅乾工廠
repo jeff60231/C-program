@@ -1,3 +1,5 @@
+
+
 // cakeFactory.cpp : 定義主控台應用程式的進入點。
 //
 
@@ -5,58 +7,603 @@
 
 #include <stdio.h>
 
+int status = 0;
+
+int first_milk_second_choco(int flour, int milk, int coco, int powder);
+int first_milk_second_waffle(int flour, int milk, int coco, int powder);
+int first_choco_second_milk(int flour, int milk, int coco, int powder);
+int first_choco_second_waffle(int flour, int milk, int coco, int powder);
+int first_waffle_second_milk(int flour, int milk, int coco, int powder);
+int first_waffle_second_choco(int flour, int milk, int coco, int powder);
+int compare_benefit(int benefit1, int benefit2, int benefit3, int benefit4, int benefit5, int benefit6);
+
+
 
 int main()
 {
-int flour = 0;
-int milk = 0;
-int coco = 0;
-int powder  = 0;
+	int flour = 0;
+	int milk = 0;
+	int coco = 0;
+	int powder = 0;
 
-int cookieChoco = 0;
-int cookieMilk = 0;
-int cookieWaffle = 0;
+	int cookieChoco = 0;
+	int cookieMilk = 0;
+	int cookieWaffle = 0;
+	int benefit = 0;
 
-int benefit = 0;
+	scanf_s("%d%d%d%d", &flour, &milk, &coco, &powder);
+  
+		benefit =  compare_benefit(first_milk_second_choco(flour, milk, coco, powder), first_milk_second_waffle(flour, milk, coco, powder),
+		first_choco_second_milk(flour, milk, coco, powder),
+		first_choco_second_waffle(flour, milk, coco, powder), first_waffle_second_milk(flour, milk, coco, powder),
+		first_waffle_second_choco(flour, milk, coco, powder));
 
-scanf_s("%d%d%d%d", &flour, &milk, &coco, &powder);
+		if (status == 1)
+		{
+			if (flour > 0 && milk > 0)
+			{
+				for (; flour > 0 && milk > 0; flour--, milk--)
+				{
 
-if(flour > 0 && milk > 0)
+					cookieMilk++;
+
+				}
+			}
+
+			if (flour > 0 && coco > 0)
+			{
+
+				for (; flour > 0 && coco > 0; flour--, coco--)
+				{
+
+					cookieChoco++;
+
+				}
+
+			}
+
+			if (milk > 0 && powder > 0)
+			{
+
+				for (; milk > 0 && powder > 0; milk--, powder--)
+				{
+
+					cookieWaffle++;
+
+				}
+
+			}
+		}
+		else if (status == 2)
+		{
+			if (flour > 0 && milk > 0)
+			{
+				for (; flour > 0 && milk > 0; flour--, milk--)
+				{
+
+					cookieMilk++;
+
+				}
+			}
+
+
+
+			if (milk > 0 && powder > 0)
+			{
+
+				for (; milk > 0 && powder > 0; milk--, powder--)
+				{
+
+					cookieWaffle++;
+
+				}
+
+			}
+
+			if (flour > 0 && coco > 0)
+			{
+
+				for (; flour > 0 && coco > 0; flour--, coco--)
+				{
+
+					cookieChoco++;
+
+				}
+
+			}
+		}
+		else if (status == 3)
+		{
+			if (flour > 0 && coco > 0)
+			{
+
+				for (; flour > 0 && coco > 0; flour--, coco--)
+				{
+
+					cookieChoco++;
+
+				}
+
+			}
+
+			if (flour > 0 && milk > 0)
+			{
+				for (; flour > 0 && milk > 0; flour--, milk--)
+				{
+
+					cookieMilk++;
+
+				}
+			}
+
+
+
+			if (milk > 0 && powder > 0)
+			{
+
+				for (; milk > 0 && powder > 0; milk--, powder--)
+				{
+
+					cookieWaffle++;
+
+				}
+
+			}
+		}
+		else if (status == 4)
+		{
+			if (flour > 0 && coco > 0)
+			{
+
+				for (; flour > 0 && coco > 0; flour--, coco--)
+				{
+
+					cookieChoco++;
+
+				}
+
+			}
+
+			if (milk > 0 && powder > 0)
+			{
+
+				for (; milk > 0 && powder > 0; milk--, powder--)
+				{
+
+					cookieWaffle++;
+
+				}
+
+			}
+
+			if (flour > 0 && milk > 0)
+			{
+				for (; flour > 0 && milk > 0; flour--, milk--)
+				{
+
+					cookieMilk++;
+
+				}
+			}
+		}
+		else if (status == 5)
+		{
+			if (milk > 0 && powder > 0)
+			{
+
+				for (; milk > 0 && powder > 0; milk--, powder--)
+				{
+
+					cookieWaffle++;
+
+				}
+
+			}
+
+			if (flour > 0 && milk > 0)
+			{
+				for (; flour > 0 && milk > 0; flour--, milk--)
+				{
+
+					cookieMilk++;
+
+				}
+			}
+
+			if (flour > 0 && coco > 0)
+			{
+
+				for (; flour > 0 && coco > 0; flour--, coco--)
+				{
+
+					cookieChoco++;
+
+				}
+
+			}
+		}
+		else if (status == 6)
+		{
+			if (milk > 0 && powder > 0)
+			{
+
+				for (; milk > 0 && powder > 0; milk--, powder--)
+				{
+
+					cookieWaffle++;
+
+				}
+
+			}
+
+			if (flour > 0 && coco > 0)
+			{
+
+				for (; flour > 0 && coco > 0; flour--, coco--)
+				{
+
+					cookieChoco++;
+
+				}
+
+			}
+
+			if (flour > 0 && milk > 0)
+			{
+				for (; flour > 0 && milk > 0; flour--, milk--)
+				{
+
+					cookieMilk++;
+
+				}
+			}
+		}
+
+	printf("%d %d %d\n", cookieChoco, cookieMilk, cookieWaffle);
+	printf("%d", benefit);
+}
+
+int first_milk_second_choco( int flour, int milk, int coco, int powder)
 {
-	for( ; flour > 0 && milk > 0 ; flour-- , milk-- )
+
+	int this_cookieChoco = 0;
+	int this_cookieMilk = 0;
+	int this_cookieWaffle = 0;
+	
+	if (flour > 0 && milk > 0)
+	{
+		for (; flour > 0 && milk > 0; flour--, milk--)
+		{
+
+			this_cookieMilk++;
+
+		}
+	}
+
+	if (flour > 0 && coco > 0)
 	{
 
-		cookieMilk ++;
+		for (; flour > 0 && coco > 0; flour--, coco--)
+		{
+
+			this_cookieChoco++;
+
+		}
 
 	}
-}
 
-if(flour > 0 && coco > 0)
-{
-
-	for( ; flour > 0 && coco > 0 ; flour-- , coco-- )
+	if (milk > 0 && powder > 0)
 	{
 
-		cookieChoco ++;
+		for (; milk > 0 && powder > 0; milk--, powder--)
+		{
+
+			this_cookieWaffle++;
+
+		}
 
 	}
+	 return this_cookieChoco * 80 + this_cookieMilk * 100 + this_cookieWaffle * 60;
+
 
 }
 
-if(milk > 0 && powder > 0)
+int first_milk_second_waffle(int flour, int milk, int coco, int powder)
 {
 
-	for( ; milk > 0 && powder > 0 ; milk-- , powder-- )
+	int this_cookieChoco = 0;
+	int this_cookieMilk = 0;
+	int this_cookieWaffle = 0;
+
+	if (flour > 0 && milk > 0)
+	{
+		for (; flour > 0 && milk > 0; flour--, milk--)
+		{
+
+			this_cookieMilk++;
+
+		}
+	}
+
+	
+
+	if (milk > 0 && powder > 0)
 	{
 
-		cookieWaffle ++;
+		for (; milk > 0 && powder > 0; milk--, powder--)
+		{
+
+			this_cookieWaffle++;
+
+		}
 
 	}
 
-}
-benefit = cookieChoco * 80 + cookieMilk * 100 + cookieWaffle * 60;
-printf("%d %d %d\n", cookieChoco, cookieMilk, cookieWaffle);
-printf("%d" , benefit );
-}
+	if (flour > 0 && coco > 0)
+	{
+
+		for (; flour > 0 && coco > 0; flour--, coco--)
+		{
+
+			this_cookieChoco++;
+
+		}
+
+	}
+	return this_cookieChoco * 80 + this_cookieMilk * 100 + this_cookieWaffle * 60;
 
 
+}
+
+int first_choco_second_milk(int flour, int milk, int coco, int powder)
+{
+
+	int this_cookieChoco = 0;
+	int this_cookieMilk = 0;
+	int this_cookieWaffle = 0;
+	
+	if (flour > 0 && coco > 0)
+	{
+
+		for (; flour > 0 && coco > 0; flour--, coco--)
+		{
+
+			this_cookieChoco++;
+
+		}
+
+	}
+
+	if (flour > 0 && milk > 0)
+	{
+		for (; flour > 0 && milk > 0; flour--, milk--)
+		{
+
+			this_cookieMilk++;
+
+		}
+	}
+
+	
+
+	if (milk > 0 && powder > 0)
+	{
+
+		for (; milk > 0 && powder > 0; milk--, powder--)
+		{
+
+			this_cookieWaffle++;
+
+		}
+
+	}
+	return this_cookieChoco * 80 + this_cookieMilk * 100 + this_cookieWaffle * 60;
+
+
+}
+
+int first_choco_second_waffle(int flour, int milk, int coco, int powder)
+{
+
+	int this_cookieChoco = 0;
+	int this_cookieMilk = 0;
+	int this_cookieWaffle = 0;
+	
+	
+
+	if (flour > 0 && coco > 0)
+	{
+
+		for (; flour > 0 && coco > 0; flour--, coco--)
+		{
+
+			this_cookieChoco++;
+
+		}
+
+	}
+
+	if (milk > 0 && powder > 0)
+	{
+
+		for (; milk > 0 && powder > 0; milk--, powder--)
+		{
+
+			this_cookieWaffle++;
+
+		}
+
+	}
+
+	if (flour > 0 && milk > 0)
+	{
+		for (; flour > 0 && milk > 0; flour--, milk--)
+		{
+
+			this_cookieMilk++;
+
+		}
+	}
+	return this_cookieChoco * 80 + this_cookieMilk * 100 + this_cookieWaffle * 60;
+
+
+}
+
+int first_waffle_second_milk(int flour, int milk, int coco, int powder)
+{
+
+	int this_cookieChoco = 0;
+	int this_cookieMilk = 0;
+	int this_cookieWaffle = 0;
+	
+	if (milk > 0 && powder > 0)
+	{
+
+		for (; milk > 0 && powder > 0; milk--, powder--)
+		{
+
+			this_cookieWaffle++;
+
+		}
+
+	}
+	
+	if (flour > 0 && milk > 0)
+	{
+		for (; flour > 0 && milk > 0; flour--, milk--)
+		{
+
+			this_cookieMilk++;
+
+		}
+	}
+
+	if (flour > 0 && coco > 0)
+	{
+
+		for (; flour > 0 && coco > 0; flour--, coco--)
+		{
+
+			this_cookieChoco++;
+
+		}
+
+	}
+
+	
+	return this_cookieChoco * 80 + this_cookieMilk * 100 + this_cookieWaffle * 60;
+
+
+}
+
+int first_waffle_second_choco(int flour, int milk, int coco, int powder)
+{
+
+	int this_cookieChoco = 0;
+	int this_cookieMilk = 0;
+	int this_cookieWaffle = 0;
+	
+	
+
+	
+	if (milk > 0 && powder > 0)
+	{
+
+		for (; milk > 0 && powder > 0; milk--, powder--)
+		{
+
+			this_cookieWaffle++;
+
+		}
+
+	}
+
+	if (flour > 0 && coco > 0)
+	{
+
+		for (; flour > 0 && coco > 0; flour--, coco--)
+		{
+
+			this_cookieChoco++;
+
+		}
+
+	}
+
+	if (flour > 0 && milk > 0)
+	{
+		for (; flour > 0 && milk > 0; flour--, milk--)
+		{
+
+			this_cookieMilk++;
+
+		}
+	}
+
+	return this_cookieChoco * 80 + this_cookieMilk * 100 + this_cookieWaffle * 60;
+
+
+}
+
+int compare_benefit( int benefit1, int benefit2, int benefit3, int benefit4, int benefit5, int benefit6)
+{
+	int benefit_max = 0;
+
+	if (benefit1 > benefit2)
+	{
+		benefit_max = benefit1;
+
+		status = 1;
+	}
+	else
+	{
+		benefit_max = benefit2;
+
+		status = 2;
+	}
+	if (benefit_max > benefit3)
+	{
+		benefit_max = benefit_max;
+	}
+	else
+	{
+		benefit_max = benefit3;
+
+		status = 3;
+	}
+
+	if (benefit_max > benefit4)
+	{
+		benefit_max = benefit_max;
+	}
+	else
+	{
+		benefit_max = benefit4;
+
+		status = 4;
+	}
+
+	if (benefit_max > benefit5)
+	{
+		benefit_max = benefit_max;
+	}
+	else
+	{
+		benefit_max = benefit5;
+
+		status = 5;
+	}
+
+	if (benefit_max > benefit6)
+	{
+		benefit_max = benefit_max;
+	}
+	else
+	{
+		benefit_max = benefit6;
+
+		status = 6;
+	}
+
+	return benefit_max;
+}
