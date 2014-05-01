@@ -37,7 +37,7 @@ int multiple(int num1, int num2)
 	else
 	{
 
-		return  multiple(num1, 1) + multiple(num1, num2 - 1);
+		return  num1 + multiple(num1, num2 - 1);
 
 	}
 
