@@ -1,15 +1,22 @@
+
+
+
+
+
 #include "stdafx.h"
 #include <stdio.h>
 
 int f(int x);
 int g(int x);
 int h(int x);
+int compare = 0;
 int main()
 {
 	int x = 0;
+	
 
 	scanf_s("%d", &x);
-
+	f(x);
 	printf("%d", f(x));
 
 }
@@ -25,7 +32,7 @@ int f(int x)
 	
 	else if( x < h(x))
 	{
-		return f(g(x)) - g(x);
+		return f( g(x)) - g(x);
 	}
 
 	else
@@ -61,14 +68,59 @@ int h( int x)
 
 	else
 	{
+		compare = (x - 2)% 6;
+		switch(compare)
+		{
+		case 0:
+			return 2;
+		case 1 :
+			return 5;
+		case 2:
+			return 5;
+		case 3:
+			return 2;
+		case 4:
+			return -1;
+		case 5:
+			return -1;
 
 
-		return 2 + h(x - 1) - h( x - 2);
 
-
+		}
 	}
 
-
-
-
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
