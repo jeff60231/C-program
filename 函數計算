@@ -1,0 +1,74 @@
+#include "stdafx.h"
+#include <stdio.h>
+
+int f(int x);
+int g(int x);
+int h(int x);
+int main()
+{
+	int x = 0;
+
+	scanf_s("%d", &x);
+
+	printf("%d", f(x));
+
+}
+
+int f(int x)
+{
+	if (x > h(x))
+	{
+
+		return f(x - 1) - h(x);
+
+	}
+	
+	else if( x < h(x))
+	{
+		return f(g(x)) - g(x);
+	}
+
+	else
+	{
+		return 1;
+	}
+
+
+
+}
+
+int g(int x)
+{
+
+	if (x <= 2)
+	{
+		return x * x - 1;
+	}
+
+	else
+	{
+		return 2;
+	}
+
+}
+
+int h( int x)
+{
+	if (x < 2)
+	{
+		return -1;
+	}
+
+	else
+	{
+
+
+		return 2 + h(x - 1) - h( x - 2);
+
+
+	}
+
+
+
+
+}
