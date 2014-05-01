@@ -16,42 +16,35 @@ int main()
 {
 	
 	char phoneNumber[20];
-	char *tokenPtr ;
+	char backPhoneNum[100] ;
 	int areaNum = 0;
 	int i = 0;
 	int c = 0;
 	long phoneNum = 0; 
-	char token[] = "()";
+	
 	
 	
 
 	puts("Please enter the phone number in the form (555) 555-5555");
-
-	while( i < 19 && ( c = getchar()) !=  '\n' )
+	for( ; i < 19 && (c = getchar()) != '\n'; i++)
 	{
 
-
-		phoneNumber[i++] = c ;
+		phoneNumber[i] = c;
 
 	}
 
-	tokenPtr = strtok( phoneNumber , token   );
+	areaNum = atoi(strtok( phoneNumber , "()" ));
 
+	strcpy( backPhoneNum, strtok( NULL, "-"));
+	strcat( backPhoneNum, strtok(NULL, " "));
 	
 	
-	while( tokenPtr != NULL )
-	{
-		
-
-		printf( "%s\n" , tokenPtr);
-		tokenPtr = strtok( NULL, "-");
-		
-	}
+	phoneNum = atol(backPhoneNum);
 	
 
 
-	printf("The int area number is : %d\n ", areaNum);
-	printf("The long phone number is :");
+	printf(" The int area number is : %d\n ", areaNum);
+	printf("The long phone number is : %d\n", phoneNum);
 }
 
 
