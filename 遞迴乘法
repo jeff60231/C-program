@@ -1,0 +1,46 @@
+#include "stdafx.h"
+#include <stdio.h>
+
+int multiple(int num11, int num2);
+int main()
+{
+	int num1 = 0;
+	int num2 = 0;
+	scanf_s("%d%d", &num1, &num2);
+	
+
+	printf("%d", multiple(num1, num2));
+
+
+
+
+}
+
+int multiple(int num1, int num2)
+{
+	if ( num2 == 1 )
+	{
+		return num1;
+		 
+	}
+
+	else if (num2 == 0)
+	{
+
+		return 0;
+
+
+	}
+
+
+
+	else
+	{
+
+		return  multiple(num1, 1) + multiple(num1, num2 - 1);
+
+	}
+
+
+
+}
