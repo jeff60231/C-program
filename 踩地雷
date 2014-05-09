@@ -19,9 +19,9 @@ int main()
 
 	int bumpArray[12][12]  = {0};
 
-	i = rand() % 10 + 21 ;
+	bump = rand() % 10 + 21 ;
 	
-	while( set < i )
+	while( set < bump )
 	{
 		bumpI = rand() % 10 + 1;
 		bumpJ = rand() % 10 + 1;
@@ -33,75 +33,49 @@ int main()
 
 	
 
-	for(i = 1 ; 1<= i <= 10  ; i++)
+	for(i = 1 ;  i <= 10  ; i++)
 	{
-		for(j = 1; 1 <= j <= 10; j++)
+		for(j = 1;  j <= 10; j++)
 		{
             if(bumpArray[i][j] >= 9 )
     		{
     			
-                bumpArray[i - 1][j - 1] ++; 
-    			bumpArray[i - 1][j] ++;
-    			bumpArray[i - 1][j + 1] ++;
-    			bumpArray[i ][j + 1] ++;
-    			bumpArray[i ][ j - 1] ++;
-    			bumpArray[i + 1][j - 1] ++;
-    			bumpArray[i + 1][ j ] ++;
-    			bumpArray[i + 1][ j + 1] ++;
+                bumpArray[i - 1][j - 1]++ ; 
+    			bumpArray[i - 1][j]++; 
+    			bumpArray[i - 1][j + 1]++ ;
+    			bumpArray[i ][j + 1]++ ;
+    			bumpArray[i ][ j - 1]++;
+    			bumpArray[i + 1][j - 1]++;
+    			bumpArray[i + 1][ j ]++;
+    			bumpArray[i + 1][ j + 1]++;
     			
     		}
         }
 	}
-    puts("===============================");
+    puts("================================");
     puts(" 1  2  3  4  5  6  7  8  9  10 ");
     puts("================================");
-	for(i = 1; 1 <= i <= 10; i++)
+	for(i = 1; i <= 10; i++)
 	{
 
-  		for(j = 1; 1 <= j <= 10; j ++)
+  		for(j = 1; j <= 10; j ++)
           { 
               if(bumpArray[i][j] == 0)
     		{
     			printf(" _ ");
     		}
-    		else if(bumpArray[i][j] == 1)
-    		{
-    			printf(" 1 ");
-    		}
-    		else if(bumpArray[i][j] == 2)
-    		{
-    			printf(" 2 ");
-    		}
-    		else if(bumpArray[i][j] == 3)
-    		{
-    			printf(" 3 ");
-    		}
-    		else if(bumpArray[i][j] == 4)
-    		{
-    			printf(" 4 ");
-    		}
-    		else if(bumpArray[i][j] == 5)
-    		{
-    			printf(" 5 ");
-    		}
-    		else if(bumpArray[i][j] == 6)
-    		{
-    			printf(" 6 ");
-    		}
-    		else if(bumpArray[i][j] == 7)
-    		{
-    			printf(" 7 ");
-    		}
-    		else if(bumpArray[i][j] == 8)
-    		{
-    			printf(" 8 ");
-    		}
+    		
+    		
     		else if(bumpArray[i][j] >= 9)
     		{
     			printf(" @ ");
     		}
+    		else 
+    		{
+    			printf(" %d ", bumpArray[i][j]);
+    		}
     		
-    		if(i % 10 == 9){
+    		if(j == 10){
     			puts(" ");
             }
             
