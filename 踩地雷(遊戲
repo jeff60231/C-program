@@ -1,0 +1,140 @@
+// bumpUP.cpp : 定義主控台應用程式的進入點。
+//
+
+
+#include <stdlib.h>
+#include <time.h>
+#include <stdio.h>
+
+void setGame();
+void playGame();
+
+int main()
+{
+	int bump = 0;
+	int i = 0;
+	int j = 0;
+	int set = 0;
+	int bumpI = 0;
+	int bumpJ = 0;
+	
+	
+	
+	int bumpArray[12][12]  = {0};
+	
+	srand (time (NULL));
+	
+	puts("================================");
+    puts(" 1  2  3  4  5  6  7  8  9  10 ");
+    puts("================================");
+    
+    for(i = 1 ; i<= 10 ; i ++)
+    {
+          printf(" .  .  .  .  .  .  .  .  .  .  | %d\n", i);      
+    }
+    
+    setGame();
+	
+
+	
+    puts("================================");
+    puts(" 1  2  3  4  5  6  7  8  9  10 ");
+    puts("================================");
+	for(i = 1; i <= 10; i++)
+	{
+
+  		for(j = 1; j <= 10; j ++)
+          { 
+              if(bumpArray[i][j] == 0)
+    		{
+    			printf(" _ ");
+    		}
+    		
+    		
+    		else if(bumpArray[i][j] >= 9)
+    		{
+    			printf(" @ ");
+    		}
+    		else 
+    		{
+    			printf(" %d ", bumpArray[i][j]);
+    		}
+    		
+    		if(j == 10){
+    			puts(" ");
+            }
+            
+       }
+
+	}
+
+system("pause");
+return 0;
+}
+
+void setGame()
+{
+     bump = rand() % 10 + 21 ;
+	
+	while( set < bump )
+	{
+		bumpI = rand() % 10 + 1;
+		bumpJ = rand() % 10 + 1;
+		bumpArray[bumpI][bumpJ] = 9; 
+
+
+		set ++;
+	}
+
+	
+
+	for(i = 1 ;  i <= 10  ; i++)
+	{
+		for(j = 1;  j <= 10; j++)
+		{
+            if(bumpArray[i][j] >= 9 )
+    		{
+    			
+                bumpArray[i - 1][j - 1]++ ; 
+    			bumpArray[i - 1][j]++; 
+    			bumpArray[i - 1][j + 1]++ ;
+    			bumpArray[i ][j + 1]++ ;
+    			bumpArray[i ][ j - 1]++;
+    			bumpArray[i + 1][j - 1]++;
+    			bumpArray[i + 1][ j ]++;
+    			bumpArray[i + 1][ j + 1]++;
+    			
+    		}
+        }
+	}     
+}
+
+void playGame()
+{
+    int column = 0;
+    int row = 0;
+    int action = 0;
+    
+    puts("Enter what column and row do you want to choose?");
+    scanf("%d %d", &column, &row); 
+    puts("Enter what action do you want to do, 1 for dig, 2 for flag, 3 for unsure");
+    puts("%d", &action);
+    
+    if(action == 1)
+    {
+              
+    }
+    else if(action == 2 )
+    {
+         
+    }
+    else if(action == 3)
+    {
+         
+    }
+    else
+    {
+     puts("enter 1 or 2 or 3, ok??");    
+    }
+    
+}
