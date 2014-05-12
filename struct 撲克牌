@@ -1,4 +1,4 @@
-include "stdafx.h"
+#include "stdafx.h"
 
 
 // Fig. 7.24: fig07_24.c
@@ -12,15 +12,23 @@ include "stdafx.h"
 #define CARDS 52
 
 // prototypes
-void shuffle(unsigned int wDeck[][FACES]); // shuffling modifies wDeck
+void shuffle(Card * const wDeck[][FACES]); // shuffling modifies wDeck
 void deal(unsigned int wDeck[][FACES], const char *wFace[],
 	const char *wSuit[], unsigned int wFrequency[]); // dealing doesn't modify the arrays
 void judgeDeckPairs(unsigned int wFrequency[], const char *wFace[]);
 void judgeDeckThreeOrFour(unsigned int wFrequency[], const char *wFace[]);
 void resetFrequency(unsigned int wFrequency[]);
 
+struct card{
+	const char *suit;
+	const char *face;
+};
+
+typedef struct card Card;
+
 int main(void)
 {
+	Card deck[CARDS];
 	// initialize suit array                       
 	const char *suit[SUITS] =
 	{ "Hearts", "Diamonds", "Clubs", "Spades" };
@@ -44,19 +52,19 @@ int main(void)
 
 
 
-		printf("The  hand of cards:\n");
-		puts("");
-		resetFrequency(frequency);
-		deal(deck, face, suit, frequency); // deal the deck
-		judgeDeckPairs(frequency, face);
-		judgeDeckThreeOrFour(frequency, face);
-		puts("");
+	printf("The  hand of cards:\n");
+	puts("");
+	resetFrequency(frequency);
+	deal(deck, face, suit, frequency); // deal the deck
+	judgeDeckPairs(frequency, face);
+	judgeDeckThreeOrFour(frequency, face);
+	puts("");
 
 
 } // end main
 
 // shuffle cards in deck
-void shuffle(unsigned int wDeck[][FACES])
+void shuffle(Card * const wDeck[][FACES])
 {
 	size_t row; // row number
 	size_t column; // column number
@@ -112,7 +120,7 @@ void judgeDeckPairs(unsigned int wFrequency[], const char *wFace[])
 	{
 		if (wFrequency[times] == 2)
 		{
-			record++; 
+			record++;
 			temp[0] = times;
 			timesRecord = times;
 			break;
@@ -142,7 +150,7 @@ void judgeDeckPairs(unsigned int wFrequency[], const char *wFace[])
 
 
 }
-void judgeDeckThreeOrFour(unsigned int wFrequency[],const char *wFace[])
+void judgeDeckThreeOrFour(unsigned int wFrequency[], const char *wFace[])
 {
 	size_t times;
 	for (times = 0; times < 13; times++)
@@ -162,6 +170,6 @@ void resetFrequency(unsigned int wFrequency[])
 
 	for (i = 0; i < 13; i++)
 	{
-		wFrequency[i] =  0 ;
+		wFrequency[i] = 0;
 	}
-}ㄅ
+}
