@@ -1,3 +1,6 @@
+// ConsoleApplication1.cpp : 定義主控台應用程式的進入點。
+//
+
 #include "stdafx.h"
 
 
@@ -11,13 +14,6 @@
 #define FACES 13
 #define CARDS 52
 
-// prototypes
-void shuffle(Card * const wDeck[][FACES]); // shuffling modifies wDeck
-void deal(unsigned int wDeck[][FACES], const char *wFace[],
-	const char *wSuit[], unsigned int wFrequency[]); // dealing doesn't modify the arrays
-void judgeDeckPairs(unsigned int wFrequency[], const char *wFace[]);
-void judgeDeckThreeOrFour(unsigned int wFrequency[], const char *wFace[]);
-void resetFrequency(unsigned int wFrequency[]);
 
 struct card{
 	const char *suit;
@@ -25,10 +21,19 @@ struct card{
 };
 
 typedef struct card Card;
+// prototypes
+void fillDeck(Card * const wDeck, const char * wFace[], const char * wSuit[] ); // shuffling modifies wDeck
+void deal(Card * const wDeck, const char *wFace[],const char *wSuit[], unsigned int wFrequency[]); // dealing doesn't modify the arrays
+void shuffle(Card * const wDeck);
+void judgeDeckPairs(unsigned int wFrequency[], const char *wFace[]);
+void judgeDeckThreeOrFour(unsigned int wFrequency[], const char *wFace[]);
+void resetFrequency(unsigned int wFrequency[]);
+
+
 
 int main(void)
 {
-	Card deck[CARDS];
+	
 	// initialize suit array                       
 	const char *suit[SUITS] =
 	{ "Hearts", "Diamonds", "Clubs", "Spades" };
@@ -40,14 +45,14 @@ int main(void)
 	"Nine", "Ten", "Jack", "Queen", "King" };
 
 	// initialize deck array
-	unsigned int deck[SUITS][FACES] = { 0 };
+	Card  deck[CARDS] ;
 
 	unsigned int frequency[13] = { 0 };
 
 
 
 	srand(time(NULL)); // seed random-number generator
-
+	fillDeck(deck, face, suit);
 	shuffle(deck); // shuffle the deck
 
 
@@ -64,55 +69,71 @@ int main(void)
 } // end main
 
 // shuffle cards in deck
-void shuffle(Card * const wDeck[][FACES])
+void fillDeck(Card * const wDeck, const char * wFace[], const char * wSuit[] )
 {
-	size_t row; // row number
-	size_t column; // column number
+	
 	size_t card; // counter
 
 	// for each of the cards, choose slot of deck randomly
-	for (card = 1; card <= CARDS; ++card) {
+	for (card = 0; card < CARDS; ++card) {
 
 		// choose new random location until unoccupied slot found
-		do {
-			row = rand() % SUITS;
-			column = rand() % FACES;
-		} while (wDeck[row][column] != 0); // end do...while
+		wDeck[card].face = wFace[card % FACES];
+		wDeck[card].suit = wSuit[card / FACES];
+
 
 		// place card number in chosen slot of deck
-		wDeck[row][column] = card;
+		
 	} // end for
 } // end function shuffle
 
+void shuffle( Card * const wDeck)
+{
+	size_t i;
+	size_t j;
+	Card temp;
+
+	for(i = 0; i < CARDS; i++)
+	{
+
+		j = rand() % CARDS;
+		temp = wDeck[i]; 
+		wDeck[i] = wDeck[j];
+		wDeck[j] = temp;
+
+
+	}
+
+
+
+}
+
 // deal cards in deck
-void deal(unsigned int wDeck[][FACES], const char *wFace[],
+void deal(Card * const wDeck, const char *wFace[],
 	const char *wSuit[], unsigned int wFrequency[])
 {
-	size_t card; // card counter
-	size_t row; // row counter
-	size_t column; // column counter
+	size_t i; // card counter
+	size_t j;
+	size_t k;
+	size_t l;
+	
 
 	// deal each of the cards
-	for (card = 1; card <= 5; ++card) {
-		// loop through rows of wDeck
-		for (row = 0; row < SUITS; ++row) {
-			// loop through columns of wDeck for current row
-			for (column = 0; column < FACES; ++column) {
-				// if slot contains current card, display card
-				if (wDeck[row][column] == card) {
-					printf("%5s of %-8s%c", wFace[column], wSuit[row],
-						card % 1 == 0 ? '\n' : '\t'); // 2-column format
-					wFrequency[column] ++;
-				} // end if
-			} // end for
-		} // end for
-	} // end for
-} // end function deal
+	for (i = 0; i < 5; ++i) {
+		
+		
+		printf("%5s of %5s%s", wDeck[i].face, wDeck[i].suit, (i + 1) % 1 ?"  " :"\n");
+		for(k = 0; k < 13; k++){
+		if(wDeck[i].face == wFace[k])
+			wFrequency[k] ++;
+		}
+	}
 
+}
 void judgeDeckPairs(unsigned int wFrequency[], const char *wFace[])
 {
 	size_t times;
-	size_t column;
+	
 	unsigned int timesRecord = 0;
 	unsigned int temp[2] = { 0 };
 	unsigned int record = 0;
