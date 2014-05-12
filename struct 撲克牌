@@ -1,0 +1,167 @@
+include "stdafx.h"
+
+
+// Fig. 7.24: fig07_24.c
+// Card shuffling and dealing.
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+#define SUITS 4
+#define FACES 13
+#define CARDS 52
+
+// prototypes
+void shuffle(unsigned int wDeck[][FACES]); // shuffling modifies wDeck
+void deal(unsigned int wDeck[][FACES], const char *wFace[],
+	const char *wSuit[], unsigned int wFrequency[]); // dealing doesn't modify the arrays
+void judgeDeckPairs(unsigned int wFrequency[], const char *wFace[]);
+void judgeDeckThreeOrFour(unsigned int wFrequency[], const char *wFace[]);
+void resetFrequency(unsigned int wFrequency[]);
+
+int main(void)
+{
+	// initialize suit array                       
+	const char *suit[SUITS] =
+	{ "Hearts", "Diamonds", "Clubs", "Spades" };
+
+	// initialize face array                   
+	const char *face[FACES] =
+	{ "Ace", "Deuce", "Three", "Four",
+	"Five", "Six", "Seven", "Eight",
+	"Nine", "Ten", "Jack", "Queen", "King" };
+
+	// initialize deck array
+	unsigned int deck[SUITS][FACES] = { 0 };
+
+	unsigned int frequency[13] = { 0 };
+
+
+
+	srand(time(NULL)); // seed random-number generator
+
+	shuffle(deck); // shuffle the deck
+
+
+
+		printf("The  hand of cards:\n");
+		puts("");
+		resetFrequency(frequency);
+		deal(deck, face, suit, frequency); // deal the deck
+		judgeDeckPairs(frequency, face);
+		judgeDeckThreeOrFour(frequency, face);
+		puts("");
+
+
+} // end main
+
+// shuffle cards in deck
+void shuffle(unsigned int wDeck[][FACES])
+{
+	size_t row; // row number
+	size_t column; // column number
+	size_t card; // counter
+
+	// for each of the cards, choose slot of deck randomly
+	for (card = 1; card <= CARDS; ++card) {
+
+		// choose new random location until unoccupied slot found
+		do {
+			row = rand() % SUITS;
+			column = rand() % FACES;
+		} while (wDeck[row][column] != 0); // end do...while
+
+		// place card number in chosen slot of deck
+		wDeck[row][column] = card;
+	} // end for
+} // end function shuffle
+
+// deal cards in deck
+void deal(unsigned int wDeck[][FACES], const char *wFace[],
+	const char *wSuit[], unsigned int wFrequency[])
+{
+	size_t card; // card counter
+	size_t row; // row counter
+	size_t column; // column counter
+
+	// deal each of the cards
+	for (card = 1; card <= 5; ++card) {
+		// loop through rows of wDeck
+		for (row = 0; row < SUITS; ++row) {
+			// loop through columns of wDeck for current row
+			for (column = 0; column < FACES; ++column) {
+				// if slot contains current card, display card
+				if (wDeck[row][column] == card) {
+					printf("%5s of %-8s%c", wFace[column], wSuit[row],
+						card % 1 == 0 ? '\n' : '\t'); // 2-column format
+					wFrequency[column] ++;
+				} // end if
+			} // end for
+		} // end for
+	} // end for
+} // end function deal
+
+void judgeDeckPairs(unsigned int wFrequency[], const char *wFace[])
+{
+	size_t times;
+	size_t column;
+	unsigned int timesRecord = 0;
+	unsigned int temp[2] = { 0 };
+	unsigned int record = 0;
+	for (times = 0; times < 13; times++)
+	{
+		if (wFrequency[times] == 2)
+		{
+			record++; 
+			temp[0] = times;
+			timesRecord = times;
+			break;
+		}
+
+	}
+	for (times = timesRecord + 1; times < 13; times++)
+	{
+
+		if (wFrequency[times] == 2)
+		{
+			record++;
+			temp[1] = times;
+			timesRecord = times;
+			break;
+		}
+
+	}
+	if (record == 1)
+	{
+		printf("The hand contains a pair of %s", wFace[temp[0]]);
+	}
+	else if (record == 2)
+	{
+		printf("The hand contains two pairs of %s and %s", wFace[temp[0]], wFace[temp[1]]);
+	}
+
+
+}
+void judgeDeckThreeOrFour(unsigned int wFrequency[],const char *wFace[])
+{
+	size_t times;
+	for (times = 0; times < 13; times++)
+	{
+		if (wFrequency[times] == 3)
+			printf("The hand contains three of %s.", wFace[times]);
+		else if (wFrequency[times] == 4)
+			printf("The hand contains four of %s.", wFace[times]);
+	}
+
+
+}
+
+void resetFrequency(unsigned int wFrequency[])
+{
+	unsigned int i;
+
+	for (i = 0; i < 13; i++)
+	{
+		wFrequency[i] =  0 ;
+	}
+}ㄅ
