@@ -1,0 +1,146 @@
+// bitcard.cpp : 定義主控台應用程式的進入點。
+//
+
+#include "stdafx.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#define CARDS 52
+
+
+struct bitCard {                                  
+   unsigned int face : 4; // 4 bits; 0-15        
+   unsigned int suit : 2; // 2 bits; 0-3         
+   unsigned int color : 1; // 1 bit; 0-1          
+};                         
+
+typedef struct bitCard Card; // new type name for struct bitCard   
+
+void fillDeck( Card * const wDeck ); // prototype
+void deal(  const Card * const wDeck, const char *face[], const char *suit[], const char *color[] ); // prototype
+void shuffle( Card * const wDeck);
+
+int main( void )
+{ 
+	const char *face[] = {"Ace", "Deuce", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King"};
+	const char *suit[] = {"Hearts", "Diamonds", "Clubs", "Spades"};
+	const char *color[] = {"Red", "Black"};
+	
+	srand(time (NULL) );
+	Card deck[ CARDS ]; // create array of Cards
+
+   fillDeck( deck);
+   shuffle(deck);
+   deal( deck, face, suit, color );
+
+} // end main
+
+// initialize Cards
+void fillDeck( Card * const wDeck)
+{ 
+   size_t i; // counter
+
+   // loop through wDeck
+   for ( i = 0; i < CARDS; ++i ) { 
+      wDeck[ i ].face = i % (CARDS / 4); 
+      wDeck[ i ].suit = i / (CARDS / 4);  
+      wDeck[ i ].color = i / (CARDS / 2);
+   } // end for
+} // end function fillDeck
+
+// output cards in two-column format; cards 0-25 subscripted with 
+// k1 (column 1); cards 26-51 subscripted with k2 (column 2)
+void deal( const Card * const wDeck, const char *face[], const char *suit[], const char *color[] )
+{ 
+   size_t k1;
+   size_t j;
+   int wFrequency[13] = {0};
+   
+
+   // loop through wDeck
+   for ( k1 = 0 ; k1 < 5; ++k1  ) { 
+      printf( "Card:%3s  Suit:%2s  Color:%2s \n",
+         face[wDeck[ k1 ].face], suit[wDeck[ k1 ].suit], color[wDeck[ k1 ].color] );
+     for(j = 0; j < 13; j++)
+	 {
+	  if(wDeck[ k1 ].face == j )
+	  {
+		  wFrequency[j] ++;
+	  }
+		
+	 }
+   }
+   size_t times;
+	size_t column;
+	unsigned int timesRecord = 0;
+	unsigned int temp[2] = { 0 };
+	unsigned int record = 0;
+	for (times = 0; times < 13; times++)
+	{
+		if (wFrequency[times] == 2)
+		{
+			record++; 
+			temp[0] = times;
+			timesRecord = times;
+			break;
+		}
+	
+	}
+	for (times = timesRecord + 1; times < 13; times++)
+	{
+
+		if (wFrequency[times] == 2)
+		{
+			record++;
+			temp[1] = times;
+			timesRecord = times;
+			break;
+		}
+
+	}
+	if (record == 1)
+	{
+		puts(" ");
+		printf("The hand contains a pair of %s", face[temp[0]]);
+	}
+	else if (record == 2)
+	{
+		puts(" ");
+		printf("The hand contains two pairs of %s and %s", face[temp[0]], face[temp[1]]);
+	}
+
+	
+	for (times = 0; times < 13; times++)
+	{
+		if (wFrequency[times] == 3)
+		{
+			puts(" ");
+			printf("The hand contains three of %s.", face[times]);
+		}
+		else if (wFrequency[times] == 4)
+		{
+			puts(" ");
+			printf("The hand contains four of %s.", face[times]);
+	
+		}
+	}
+} // end function deal
+
+void shuffle( Card * const wDeck)
+{
+	size_t i;
+	int j = 0;
+	Card temp;
+	for(i = 0; i < CARDS; i++)
+	{
+		j =  rand() % CARDS;
+		temp = wDeck[i];
+		wDeck[i] = wDeck[j];
+		wDeck[j] = temp;
+
+	}
+
+
+
+}
+
