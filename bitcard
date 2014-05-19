@@ -55,6 +55,7 @@ void deal( const Card * const wDeck, const char *face[], const char *suit[], con
    size_t k1;
    size_t j;
    int wFrequency[13] = {0};
+   bool isPair = false;
    
 
    // loop through wDeck
@@ -96,17 +97,19 @@ void deal( const Card * const wDeck, const char *face[], const char *suit[], con
 			timesRecord = times;
 			break;
 		}
-
+		
 	}
 	if (record == 1)
 	{
 		puts(" ");
 		printf("The hand contains a pair of %s", face[temp[0]]);
+		isPair =  true;
 	}
 	else if (record == 2)
 	{
 		puts(" ");
 		printf("The hand contains two pairs of %s and %s", face[temp[0]], face[temp[1]]);
+		isPair = true;
 	}
 
 	
@@ -116,14 +119,26 @@ void deal( const Card * const wDeck, const char *face[], const char *suit[], con
 		{
 			puts(" ");
 			printf("The hand contains three of %s.", face[times]);
+			isPair = true;
+			break;
 		}
 		else if (wFrequency[times] == 4)
 		{
 			puts(" ");
 			printf("The hand contains four of %s.", face[times]);
+			isPair = true;
+			break;
 	
 		}
+		
 	}
+
+	if(isPair == false)
+	{
+		puts(" ");
+		printf("The hand has no pair!!");
+	}
+	
 } // end function deal
 
 void shuffle( Card * const wDeck)
@@ -143,4 +158,3 @@ void shuffle( Card * const wDeck)
 
 
 }
-
