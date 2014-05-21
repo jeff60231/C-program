@@ -8,18 +8,37 @@
 
 int main()
 {
-	 char *string;
-	 int length[100];
+	 char c;
+	char string[1000];
+	char string2[1000];
+	
+	  char *ptr;
+	 int leng = 0;
 	 int space = 0;
+	 double result = 0;
 	 size_t i;
 
-	 scanf_s("%s", &string);
-
-	 length[0] = strlen(strtok(string, " "));
-	 for (i = 1; strtok(string, " ") != '\0'; i++)
+	
+	 for(i = 0; ( c = getchar() )!= '\n' ;i++  )
 	 {
-		 length[i] == strlen(strtok(NULL, " "));
+		 string[i] = c;
 	 }
 
-}
+	 string[i] = '\0';
 
+	 ptr = strtok(string, " ");
+	strcat(string2, ptr);
+	 
+	 
+	 for (i = 1; ptr != NULL; i++)
+	 {
+		 ptr = strtok(NULL, " ");
+		 strcat(string2, ptr);
+		 space = i;
+	 }
+
+	 leng = strlen(string2);
+
+	 result = leng / (space - 1) ;
+	 printf("%f", result);
+}
