@@ -1,0 +1,63 @@
+#include "stdlib.h"
+#include "string.h"
+#include "stdio.h"
+
+enum speeds { slow , medium, fast  };
+
+struct fan{
+	enum speeds speed;
+	int isOn;
+	double radius;
+	char *color;
+	
+}  ;
+
+
+
+typedef struct fan Fan;
+void display(Fan  fan, const char * speedName[]);
+
+int main()
+{
+
+	
+	
+	const char *speedName[]={"slow", "medium", "fast" };
+	
+	
+	Fan fan1 = {fast, 1, 10.0, "yellow"};
+	display (fan1 , speedName);
+	Fan fan2 = {medium, 0, 5.0, "blue"};
+	display( fan2 , speedName);
+	
+	system("pause");
+}
+
+void display( Fan  fan,   const char * speedName[])
+{
+	if ( fan.isOn == 1 )
+	{
+		switch(fan.speed){
+			case slow:
+				{
+					printf("The fan is on,speed: %s, radius: %f, color: %s\n",speedName[0], fan.radius, fan.color);
+				}
+				
+			case medium:
+				{
+					printf("The fan is on,speed: %s, radius: %f, color: %s\n",speedName[1], fan.radius, fan.color);
+				}
+				
+			case fast:
+				{
+					printf("The fan is on,speed: %s, radius: %f, color: %s\n",speedName[2] ,fan.radius, fan.color);
+				}
+			
+		}
+	}
+	else
+	{
+		printf("The fan is off, radius: %f, color: %s\n", fan.radius, fan.color);
+	}
+
+}
