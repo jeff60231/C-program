@@ -1,63 +1,53 @@
-#include "stdlib.h"
-#include "string.h"
-#include "stdio.h"
+// ConsoleApplication1.cpp : 定義主控台應用程式的進入點。
+//
 
-enum speeds { slow , medium, fast  };
+#include <stdio.h>
+#include <string.h>
+#include "stdlib.h""
 
-struct fan{
-	enum speeds speed;
-	int isOn;
-	double radius;
-	char *color;
-	
-}  ;
-
-
-
-typedef struct fan Fan;
-void display(Fan  fan, const char * speedName[]);
 
 int main()
 {
+	char c;
+	char string[1000];
+	char string2[1000];
+	
+	  char *ptr;
+	 double leng = 0;
+	 double space = 0;
+	 double word = 1;
+	 double result = 0;
+	 size_t i;
 
 	
-	
-	const char *speedName[]={"slow", "medium", "fast" };
-	
-	
-	Fan fan1 = {fast, 1, 10.0, "yellow"};
-	display (fan1 , speedName);
-	Fan fan2 = {medium, 0, 5.0, "blue"};
-	display( fan2 , speedName);
-	
-	system("pause");
-}
+	 for(i = 0; ( c = getchar() )!= '\n' ;i++  )
+	 {
+		 string[i] = c;
+	 }
 
-void display( Fan  fan,   const char * speedName[])
-{
-	if ( fan.isOn == 1 )
-	{
-		switch(fan.speed){
-			case slow:
-				{
-					printf("The fan is on,speed: %s, radius: %f, color: %s\n",speedName[0], fan.radius, fan.color);
-				}
-				
-			case medium:
-				{
-					printf("The fan is on,speed: %s, radius: %f, color: %s\n",speedName[1], fan.radius, fan.color);
-				}
-				
-			case fast:
-				{
-					printf("The fan is on,speed: %s, radius: %f, color: %s\n",speedName[2] ,fan.radius, fan.color);
-				}
-			
-		}
-	}
-	else
-	{
-		printf("The fan is off, radius: %f, color: %s\n", fan.radius, fan.color);
-	}
+	 string[i] = '\0';
+	 
+	 printf("%s\n", string); 
+	 leng  = strlen(string);
+	 ptr = strtok(string, " ");
+	 
+	 
+	  printf("%f\n", leng);
+	  
+	 
+	 for (i = 1; ptr != NULL; i++)
+	 {
+		 ptr = strtok(NULL, " ");
+	
+		 printf("%s\n", ptr);
+		 
+	 }
+		space = i;
+		 word = i;
+	
+	
+	 
 
+	 result = (leng - space   )  / word  ;
+	 printf("%f", result);
 }
