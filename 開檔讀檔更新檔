@@ -1,0 +1,18 @@
+#inlcude <stdlib.h>
+#include <stdio.h>
+
+struct person{
+              char lastName[ 15 ];
+              char firstName [ 15 ];
+              char age[ 4 ];
+       };
+       
+       
+int main()
+{
+    FILE *fPtr;
+    
+    struct clientData{"unassigned", "", 0 };
+    
+       
+}
