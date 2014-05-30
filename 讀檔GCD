@@ -1,0 +1,28 @@
+#include <stdio.h>
+
+          
+int main()
+{
+ FILE * fPtr;
+ int number[100] = 0;
+  int answer[1] = 0;
+ int num = 0; 
+ int gcd = 0;
+      if( ( (fPtr = fopen("gcd_input.txt", "r") ) == NULL)
+      {
+          puts("File could not open.");
+      }
+      else{
+           fread(&num, 1 , 1 , fPtr);
+           
+           fseek(fPtr, 8, SEEK_SET);
+           
+           fread(number, 100, num, fPtr);
+           
+           while(number[i] / gcd == 0)
+           {
+                               
+           }
+           }
+    
+}
